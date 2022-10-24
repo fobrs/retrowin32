@@ -10,6 +10,7 @@ use crate::{
 };
 use std::io::Write;
 use tsify::Tsify;
+use winapi_derive::winapi_macro_derive;
 
 // For now, a magic variable that makes it easier to spot.
 pub const STDIN_HFILE: u32 = 0xF11E_0100;
@@ -524,3 +525,9 @@ winapi!(
     fn VirtualAlloc(lpAddress: u32, dwSize: u32, _flAllocationType: u32, _flProtec: u32);
     fn VirtualFree(lpAddress: u32, dwSize: u32, dwFreeType: u32);
 );
+
+#[winapi_macro_derive]
+fn GetEnvironmentVariableA2(_x86: &mut X86, _lpName: &str, _lpBuffer: u32, _nSize: u32) {}
+fn test(x86: &mut X86) {
+    GetEnvironmentVariableA2_shim(x86);
+}

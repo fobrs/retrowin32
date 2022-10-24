@@ -1,0 +1,12 @@
+[package]
+name = "winapi-derive"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = { version = "1.0", default-features = false, features = ["full", "parsing", "proc-macro"] }
+quote = "1.0"
+proc-macro2 = "1.0"

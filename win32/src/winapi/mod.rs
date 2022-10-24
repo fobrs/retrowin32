@@ -5,6 +5,10 @@ pub mod gdi32;
 pub mod kernel32;
 pub mod user32;
 
+pub unsafe fn smuggle<T: ?Sized>(x: &T) -> &'static T {
+    std::mem::transmute(x)
+}
+
 // winapi is stdcall, which means args are right to left and callee-cleaned.
 // The caller of winapi functions is responsible for pushing/popping the
 // return address, because some callers actually 'jmp' directly.

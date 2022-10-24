@@ -357,4 +357,14 @@ dependencies = [
  "serde",
  "tsify",
  "wasm-bindgen",
+ "winapi-derive",
+]
+
+[[package]]
+name = "winapi-derive"
+version = "0.1.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
