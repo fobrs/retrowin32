@@ -48,6 +48,13 @@ impl Int for u8 {
     }
 }
 
+fn shl<I: Int>(x86: &mut X86, x: I, y: u8) -> I {
+    // Note: overflowing_shl is not what we want.
+    let val = (x.as_usize() as u64).wrapping_shl(y.as_usize() as u32);
+    x86.regs.flags.set(Flags::CF, val & (1 << 31) != 0);
+    val
+}
+
 fn shl32(x86: &mut X86, x: u32, y: u8) -> u32 {
     // Note: overflowing_shl is not what we want.
     let val = (x as u64).wrapping_shl(y as u32);
